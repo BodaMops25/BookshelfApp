@@ -1,4 +1,5 @@
 .Net Backend/bin/
+.Net Backend/obj/
 
 Angular Frontend/dist
 Angular Frontend/node_modules
