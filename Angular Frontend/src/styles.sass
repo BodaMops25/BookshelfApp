@@ -1,0 +1,21 @@
+@import "bootstrap/scss/bootstrap";
+
+*
+  box-sizing: border-box
+
+h1, h2, h3, p
+  margin: 0
+  padding: 0
+
+a
+  text-decoration: none
+  color: unset
+
+.alert
+    bottom: 2em
+    right: 2em
+
+@include media-breakpoint-down(sm)
+  .alert
+      bottom: 1em
+      right: 1em

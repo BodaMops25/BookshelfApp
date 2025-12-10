@@ -1,0 +1,10 @@
+.Net Backend/bin/
+
+Angular Frontend/dist
+Angular Frontend/node_modules
+Angular Frontend/.vscode
+Angular Frontend/.vscode
+Angular Frontend/.angular/cache
+
+.sass-cache/
+.Net Backend.sln
