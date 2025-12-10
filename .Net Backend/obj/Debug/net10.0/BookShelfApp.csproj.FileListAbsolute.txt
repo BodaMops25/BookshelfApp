@@ -86,3 +86,4 @@ E:\Documents\Documents\Coding\Projects\BookshelfApp\.Net Backend\obj\Debug\net10
 E:\Documents\Documents\Coding\Projects\BookshelfApp\.Net Backend\obj\Debug\net10.0\BookShelfApp.pdb
 E:\Documents\Documents\Coding\Projects\BookshelfApp\.Net Backend\obj\Debug\net10.0\BookShelfApp.genruntimeconfig.cache
 E:\Documents\Documents\Coding\Projects\BookshelfApp\.Net Backend\obj\Debug\net10.0\ref\BookShelfApp.dll
+E:\Documents\Documents\Coding\Projects\BookshelfApp\.Net Backend\obj\Debug\net10.0\BookShelfApp.sourcelink.json

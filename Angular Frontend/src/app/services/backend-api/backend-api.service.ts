@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Book, BookFields, Quote, QuoteFields, User, UserFields } from '../../entities';
+import { AppVariables } from '../../../main';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackendApiService{
 
-  host = `http://localhost:${8080}/api/`
+  host = `http://${AppVariables.backendApiServerHost}/api/`
   userAuthToken?: string;
 
   constructor(private http: HttpClient) {}
