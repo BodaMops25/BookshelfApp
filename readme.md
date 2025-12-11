@@ -9,8 +9,7 @@
 ## Backend
 - ASP.NET 10
 - MongoDB Community Server
-<br>
-<br>
+
 # How to run
 1. Install bools
 2. Install NPM packages
