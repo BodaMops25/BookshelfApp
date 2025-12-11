@@ -100,7 +100,9 @@ export class EntryPage {
     this.backendApi.Users.login(login, pass)
     .subscribe({
       next: (token) => {
-        localStorage['userAuthToken'] = token
+        if(typeof localStorage !== "undefined") {
+          localStorage['userAuthToken'] = token
+        }
         this.router.navigate(['user/books'])
       },
       error: (error) => {

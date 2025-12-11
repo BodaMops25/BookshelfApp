@@ -35,6 +35,8 @@ import { RouterOutlet } from "@angular/router";
 export class AppComponent {
 
   toogleDarkMode() {
+    if(typeof localStorage === "undefined") return
+    if(typeof document === "undefined") return
     const ds = document.documentElement.dataset
     if(ds['bsTheme'] === 'dark') {
       delete ds['bsTheme']

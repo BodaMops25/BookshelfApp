@@ -104,7 +104,8 @@ export class QuotesPage implements OnInit {
       })
       .subscribe({
         next: () => {
-          makeAlert('Quote liked', 'success')
+          if(currentQuote.liked) makeAlert('Quote is favorite', 'success')
+          else makeAlert('Quote is not favorite', 'success')
           
           this.quotes.sort((q1, q2) => {
             if(q1.liked === true && q2.liked !== true) return -1

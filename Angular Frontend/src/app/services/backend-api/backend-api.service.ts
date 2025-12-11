@@ -14,6 +14,7 @@ export class BackendApiService{
   constructor(private http: HttpClient) {}
 
   authOptionsToRequest() {
+    if(typeof localStorage === "undefined") return {}
     return {headers: {Authorization: 'Bearer ' + localStorage['userAuthToken']}}
   }
 

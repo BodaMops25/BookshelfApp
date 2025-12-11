@@ -32,7 +32,7 @@ import { BackendApiService } from '../../services/backend-api/backend-api.servic
 
         </nav>
 
-        <div #userInfo class="user" (click)="userInfoHandler()">
+        <div #userInfo class="user">
 
           <div class="dropdown">
             <a
@@ -104,19 +104,12 @@ export class HeaderComponent implements OnInit{
         }
       }
     })
-
-    document.addEventListener('click', (event) => {
-      const element = event.composedPath().find(node => node === this.userInfoElement?.nativeElement)
-      if(element === undefined) this.isUserDetails = false
-    })
-  }
-
-  userInfoHandler() {
-    this.isUserDetails = true
   }
 
   logOutHandler() {
-    localStorage.removeItem('userAuthToken')
-    this.router.navigate(['/user/entry'])
+    if(typeof localStorage !== "undefined") {
+      localStorage.removeItem('userAuthToken')
+      this.router.navigate(['/user/entry'])
+    }
   }
 }

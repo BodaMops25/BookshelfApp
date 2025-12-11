@@ -19,6 +19,7 @@ export function checkFormDataProps(propsArr: string[], formData: FormData) {
 export type AlertTypes = 'success' | 'warning' | 'danger'
 
 export function makeAlert(message: string, type: AlertTypes) {
+  if(typeof document === "undefined") return
   document.body.insertAdjacentHTML('beforeend', `
     <div class="alert alert-${type} alert-dismissible position-fixed" role="alert">
       <div>${message}</div>
