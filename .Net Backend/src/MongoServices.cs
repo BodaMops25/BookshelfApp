@@ -96,6 +96,7 @@ public class MongoQuotesService : MongoService<Quote>
       if(fields.Title != null) updates.Add(Builders<Quote>.Update.Set(quote => quote.Title, fields.Title));
       if(fields.Author != null) updates.Add(Builders<Quote>.Update.Set(quote => quote.Author, fields.Author));
       if(fields.Text != null) updates.Add(Builders<Quote>.Update.Set(quote => quote.Text, fields.Text));
+      if(fields.Liked != null) updates.Add(Builders<Quote>.Update.Set(quote => quote.Liked, fields.Liked));
       
       if(updates.Count == 0) return null;
 

@@ -85,6 +85,7 @@ public record QuoteFieldToCreate(string Text)
   public string? Title {get;init;}
   public string? Author {get;init;}
   public string? BookTitle {get;init;}
+  public bool? Liked {get;init;}
 };
 public record QuoteFieldToUpdate
 {
@@ -92,6 +93,7 @@ public record QuoteFieldToUpdate
   public string? Title {get;init;}
   public string? Author {get;init;}
   public string? Text {get;init;}
+  public bool? Liked {get;init;}
 }
 public record Quote : IHasId
 {
@@ -106,7 +108,8 @@ public record Quote : IHasId
   public string Id {get;init;} = "";
   public DateTime CreatingDate {get;init;} = DateTime.UtcNow;
   public string? OwnerId {get;init;}
-  public string? BookTitle {get;init;}
+  public bool? Liked {get;set;}
+  public string? BookTitle {get;set;}
   public string? Title {get; set;}
   public string? Author {get; set;}
   public string Text {get; set;}

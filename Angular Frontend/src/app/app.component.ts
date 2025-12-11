@@ -1,16 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterOutlet } from "@angular/router";
+import { Component } from '@angular/core';
+import { RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterLink, RouterOutlet],
+  imports: [RouterOutlet],
   template: ` 
-    <!-- <nav>
-      <a routerLink="/">Home</a>
-      <a routerLink="/user/entry">Entry</a>
-      <a routerLink="/user/books">My books</a>
-    </nav> -->
     <router-outlet></router-outlet>
     <div (click)="toogleDarkMode()" class="toogle-theme-btn rounded-circle d-flex justify-content-center align-items-center">
       <i class="fa-solid fs-4 fa-circle-half-stroke"></i>

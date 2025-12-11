@@ -43,14 +43,16 @@ export type Quote = {
   creatingDate: string
   title: string | null
   text: string
+  liked: boolean | null
   author: string | null
   bookTitle: string | null
   ownerId: string | null
 }
 
 export type QuoteFields = {
-  title: string,
-  text: string,
-  author: string,
-  bookTitle: string
+  title?: string | null,
+  text?: string | null,
+  author?: string | null,
+  bookTitle?: string | null,
+  liked?: boolean | null
 }

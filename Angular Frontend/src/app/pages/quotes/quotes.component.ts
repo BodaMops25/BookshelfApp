@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { QuoteItemComponent } from "../../components/quoteItem/quoteItem.component";
 import { NgForOf } from '@angular/common';
 import { Router, RouterLink } from "@angular/router";
@@ -15,11 +15,11 @@ import { checkFormDataProps, makeAlert } from '../../utilities';
   template: `
     <header-component></header-component>
     <main class="container-fluid py-4">
-      <div class="d-flex flex-wrap gap-4">
+      <div #quotesList class="d-flex flex-wrap gap-4">
 
         <div *ngFor="let quote of quotes" style="flex: 1 1 auto">
           <div class="quote-item">
-            <quote-item [info]="quote" (editEvent)="onQuoteEdit(quote.id)" (deleteEvent)="onQuoteDelete(quote.id)"></quote-item>
+            <quote-item [info]="quote" (likeEvent)="onQuoteLike(quote.id)" (editEvent)="onQuoteEdit(quote.id)" (deleteEvent)="onQuoteDelete(quote.id)"></quote-item>
           </div>
         </div>
 
@@ -70,6 +70,8 @@ export class QuotesPage implements OnInit {
 
   constructor(private backendApi: BackendApiService, private router: Router) {}
   
+  @ViewChild('quotesList') quotesList!: ElementRef;
+
   quotes: Quote[] = []
   quoteEditId?: string
   bsQuoteEditModal?: any;
@@ -78,13 +80,49 @@ export class QuotesPage implements OnInit {
     this.backendApi.Quotes.getByUser()
     .subscribe({
       next: (quotes) => {
-        this.quotes = quotes
+        this.quotes = quotes.sort((q1, q2) => {
+          if(q1.liked === true && q2.liked !== true) return -1
+          else if(q2.liked === true && q1.liked !== true) return 1
+          return 0
+        })
       },
       error: (error) => {
         if(error.status === 401) this.router.navigate(['user/entry'])
         else makeAlert('Something went wrong, reload page or come back later', 'danger')
       }
     })
+  }
+
+  onQuoteLike(quoteId: string) {
+    const currentQuote = this.quotes.find(q => q.id === quoteId)
+
+    if(currentQuote) {
+      currentQuote.liked = !currentQuote.liked
+
+      this.backendApi.Quotes.update(quoteId, {
+        liked: currentQuote.liked
+      })
+      .subscribe({
+        next: () => {
+          makeAlert('Quote liked', 'success')
+          
+          this.quotes.sort((q1, q2) => {
+            if(q1.liked === true && q2.liked !== true) return -1
+            else if(q2.liked === true && q1.liked !== true) return 1
+            return 0
+          })
+        },
+        error: (error) => {
+          if(error.status === 401) this.router.navigate(['user/entry'])
+          else {
+            makeAlert('Can\'t update quote, reload page or come back later', 'danger')
+            console.log(error);
+          }
+        }
+      })
+    }
+
+    else makeAlert('No quote identificator, try again', 'danger')
   }
 
   onQuoteEdit(quoteId: string) {

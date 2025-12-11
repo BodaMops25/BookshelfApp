@@ -2,7 +2,6 @@ import { Component, Input, Output, output } from '@angular/core';
 import { Book } from '../../entities';
 import { NgIf } from '@angular/common';
 import { SymbolButtonComponent } from '../symbol-button/symbol-button.component';
-import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'book-item',

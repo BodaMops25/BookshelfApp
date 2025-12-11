@@ -1,5 +1,4 @@
 import { Component, Input, Output } from '@angular/core';
-import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'symbol-button',

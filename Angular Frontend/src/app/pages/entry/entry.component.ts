@@ -1,5 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BackendApiService } from '../../services/backend-api/backend-api.service';
 import { FormComponent } from "../../components/form/form.component";
@@ -76,6 +75,9 @@ export class EntryPage {
 
     this.backendApi.Users.post(login, pass)
     .subscribe({
+      next: (response) => {
+        makeAlert('User ' + response.login + ' was created, you can log in now', 'success')
+      },
       error: (error) => {
         makeAlert('Something went wrong!', 'danger')
         console.log(error)

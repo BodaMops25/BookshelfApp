@@ -1,6 +1,7 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig,
+  provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, Routes } from '@angular/router';
-// import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { BooksPage } from './pages/books/books.component';
 import { HomePage } from './pages/home/home.component';
 import { provideHttpClient } from '@angular/common/http';
@@ -21,10 +22,10 @@ const routes: Routes= [
 ]
 
 export const appConfig: ApplicationConfig = {
-  // providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(withEventReplay())]
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
+    provideClientHydration(withEventReplay()),
     provideHttpClient()
   ]
 };

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { QuoteItemComponent } from './quoteItem.component';
 
 describe('BookPreviewComponent', () => {

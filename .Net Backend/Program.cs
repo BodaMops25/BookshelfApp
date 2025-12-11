@@ -82,7 +82,8 @@ app.MapPost("/api/user/login", async (MongoUsersService service, [FromBody] User
   var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
   var TokenExpiringHours = 1;
 
-  if(jwtSettings["TokenExpiringHours"] != null) TokenExpiringHours = int.Parse(jwtSettings["TokenExpiringHours"]);
+  var jwtTokenExpiringHours = jwtSettings["TokenExpiringHours"];
+  if(jwtTokenExpiringHours != null) TokenExpiringHours = int.Parse(jwtTokenExpiringHours);
 
   var token = new JwtSecurityToken(
       issuer: jwtSettings["Issuer"],
@@ -227,7 +228,8 @@ app.MapPost("/api/quote", async (MongoUsersService usersService, MongoQuotesServ
     OwnerId = user.Id,
     Title = quoteFields.Title,
     Author = quoteFields.Author,
-    BookTitle = quoteFields.BookTitle
+    BookTitle = quoteFields.BookTitle,
+    Liked = quoteFields.Liked
   };
 
   Quote quoteFromDb = await quotesService.CreateOne(quote);

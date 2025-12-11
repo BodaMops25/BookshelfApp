@@ -1,5 +1,5 @@
-import { Component, Input, Output, output } from '@angular/core';
-import { Book, Quote } from '../../entities';
+import { Component, Input, output } from '@angular/core';
+import { Quote } from '../../entities';
 import { NgIf } from '@angular/common';
 import { SymbolButtonComponent } from '../symbol-button/symbol-button.component';
 
@@ -11,6 +11,9 @@ import { SymbolButtonComponent } from '../symbol-button/symbol-button.component'
       <div class="card-body position-relative">
 
         <div class="edit-buttons">
+          <symbol-button (click)="onLike()">
+            <i class="fa-solid fa-heart" [style]="info.liked ? 'color: var(--bs-pink)' : undefined"></i>
+          </symbol-button>
           <symbol-button (click)="onEdit()">
             <i class="fa-solid fa-pen"></i>
           </symbol-button>
@@ -50,8 +53,13 @@ import { SymbolButtonComponent } from '../symbol-button/symbol-button.component'
 export class QuoteItemComponent {
   @Input() info!: Quote;
 
+  likeEvent = output<void>();
   editEvent = output<void>();
   deleteEvent = output<void>();
+
+  onLike() {
+    this.likeEvent.emit()
+  }
 
   onEdit() {
     this.editEvent.emit()
